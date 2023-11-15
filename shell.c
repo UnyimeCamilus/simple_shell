@@ -1,22 +1,40 @@
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
+#include "shell.h"
 /**
- *main -  a prompt and wait for the user to type a command
- *Return: 0
+ * main - the main program where program starts
+ * Return: Always 0 on success and negative on error
  */
+
 int main(void)
 {
-	size_t buf_size;
-	char  *buf = NULL;
+	char *intake_reader = NULL;
 
-	while(1)
+	while (2*2)
 	{
-	write(1, "#cisfun$ ", 9);
-	getline(&buf, &buf_size, stdin);
+		calmdam_display();
+		intake_reader = calmdam_read();
+
+		if (intake_reader == NULL)
+		{
+			break;
+		}
+
+		if (calmdam_get_length(intake_reader) == 0)
+		{
+			free(intake_reader);
+			continue;
+		}
+
+		if (calmdam_builtin(intake_reader))
+		{
+			free(intake_reader);
+			continue;
+		}
+
+		calmdam_execute(intake_reader);
+
+		free(intake_reader);
+
 	}
+
 	return (0);
 }
