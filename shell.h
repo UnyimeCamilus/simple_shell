@@ -11,9 +11,9 @@
 extern char **environ;
 
 int calmdam_compare(const char *first, const char *second);
-int calmdam_get_length(const char *passed_intake);
+size_t calmdam_get_length(const char *passed_intake);
 void calmdam_print(const char *to_print);
-char *calmdam_copy(const char *source_copy);
+void calmdam_copy(char *duplicate, const char *source, size_t size);
 void calmdam_display(void);
 char *calmdam_read(void);
 int calmdam_builtin(char *builtin_exit);

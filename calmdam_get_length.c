@@ -4,14 +4,13 @@
  * @passed_intake: the intake passed to the function calculate the length
  * Return: a length of a character
  */
-int calmdam_get_length(const char *passed_intake)
+size_t calmdam_get_length(const char *passed_intake)
 {
-	int calc_length = 0;
+	size_t calc_length = 0;
 
-	while (*passed_intake != '\0')
+	while (passed_intake[calc_length] != '\0')
 	{
 		calc_length++;
-		passed_intake++;
 	}
 
 	return (calc_length);
